@@ -2,7 +2,7 @@
 import { ProjectCard } from "./ProjectCard";
 
 export const ProjectSection = () => (
-  <section id="projects" className="py-24">
+  <section id="projects" className="py-24 scroll-mt-20">
     <h2 className="text-4xl font-bold mb-12">Featured Projects</h2>
 
     <div className="space-y-20">

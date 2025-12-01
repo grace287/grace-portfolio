@@ -1,6 +1,6 @@
 export const AboutMe = () => {
   return (
-    <section id="about" className="py-24 bg-gradient-to-br from-grace-rose/10 via-white to-grace-lavender/10">
+    <section id="about" className="py-24 bg-gradient-to-br from-grace-rose/10 via-white to-grace-lavender/10 scroll-mt-20">
       <div className="max-w-4xl mx-auto px-6">
         <div className="text-center mb-16">
           <div className="w-20 h-0.5 bg-gradient-to-r from-grace-wine to-grace-gold mx-auto mb-6"></div>

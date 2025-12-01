@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "export": "next build",
+    "deploy": "npm run build && gh-pages -d out",
+    "preview": "npm run build && npx serve out"
   },
   "dependencies": {
     "framer-motion": "^12.23.25",

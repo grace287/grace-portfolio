@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { SkillIcon } from './SkillIcon';
 
 interface ProjectCardProps {
   title: string;
@@ -25,9 +26,7 @@ export const ProjectCard = ({ title, description, skills, link }: ProjectCardPro
           
           <div className="flex flex-wrap gap-2">
             {skills.map((skill, index) => (
-              <span key={index} className="px-3 py-1.5 bg-[linear-gradient(135deg,_#F7D7E0_0%,_#D8C8FF_100%)] text-grace-wine rounded-full text-sm font-inter font-medium border border-grace-wine/10 hover:border-grace-wine/30 transition-colors duration-200">
-                {skill}
-              </span>
+              <SkillIcon key={index} skill={skill} />
             ))}
           </div>
           

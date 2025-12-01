@@ -9,9 +9,15 @@ export const Header = () => {
       <nav className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
           
-          {/* Logo */}
-          <div className="text-2xl font-bold text-gray-900">
-            Grace
+          {/* Grace Logo */}
+          <div className="flex items-center space-x-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-grace-rose to-grace-lavender rounded-full flex items-center justify-center shadow-grace">
+              <span className="text-grace-wine font-pretendard font-bold text-lg">G</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-xl font-pretendard font-bold text-grace-text">Grace</span>
+              <span className="text-xs font-inter text-grace-secondary tracking-wider">DEVELOPER</span>
+            </div>
           </div>
           
           {/* Desktop Navigation */}

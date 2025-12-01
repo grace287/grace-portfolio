@@ -1,8 +1,12 @@
 export const AboutMe = () => {
   return (
-    <section id="about" className="py-24 bg-gray-50">
+    <section id="about" className="py-24 bg-gradient-to-br from-grace-rose/10 via-white to-grace-lavender/10">
       <div className="max-w-4xl mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center mb-16">About Me</h2>
+        <div className="text-center mb-16">
+          <div className="w-20 h-0.5 bg-gradient-to-r from-grace-wine to-grace-gold mx-auto mb-6"></div>
+          <h2 className="text-4xl font-pretendard font-bold text-grace-text mb-4">About Me</h2>
+          <p className="text-grace-secondary font-inter">끊임없이 성장하는 개발자</p>
+        </div>
         
         <div className="grid md:grid-cols-2 gap-12 items-center">
           

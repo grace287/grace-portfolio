@@ -10,25 +10,26 @@ interface ProjectCardProps {
 
 export const ProjectCard = ({ title, description, skills, image, link }: ProjectCardProps) => {
   return (
-    <div className="group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+    <div className="group relative bg-white/70 backdrop-blur-sm rounded-3xl overflow-hidden shadow-grace hover:shadow-grace-lg transition-all duration-500 hover:-translate-y-2 border border-grace-rose/20">
       <div className="grid md:grid-cols-2 gap-8 p-8">
         
         {/* Content */}
         <div className="flex flex-col justify-center space-y-6">
           <div>
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">{title}</h3>
-            <p className="text-lg text-gray-600 leading-relaxed">{description}</p>
+            <div className="w-12 h-0.5 bg-gradient-to-r from-grace-gold to-grace-wine mb-4"></div>
+            <h3 className="text-3xl font-pretendard font-bold text-grace-text mb-4">{title}</h3>
+            <p className="text-lg text-grace-secondary leading-relaxed font-inter">{description}</p>
           </div>
           
           <div className="flex flex-wrap gap-3">
             {skills.map((skill, index) => (
-              <span key={index} className="px-4 py-2 bg-gradient-to-r from-blue-50 to-indigo-50 text-indigo-700 rounded-full text-sm font-medium">
+              <span key={index} className="px-4 py-2 bg-gradient-to-r from-grace-rose/30 to-grace-lavender/30 text-grace-wine rounded-full text-sm font-pretendard font-medium border border-grace-wine/10">
                 {skill}
               </span>
             ))}
           </div>
           
-          <Link href={link} className="inline-flex items-center px-6 py-3 bg-black text-white rounded-xl hover:bg-gray-800 transition-colors group-hover:shadow-lg">
+          <Link href={link} className="inline-flex items-center px-8 py-4 bg-grace-wine text-white rounded-xl hover:bg-grace-wine/90 transition-all duration-300 group-hover:shadow-lg font-pretendard font-semibold">
             자세히 보기
             <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

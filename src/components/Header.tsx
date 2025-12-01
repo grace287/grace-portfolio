@@ -4,14 +4,13 @@ import { useState, useEffect } from 'react';
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-
-  // 하이드레이션 에러 방지
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // 스크롤 시 헤더 투명도 조절
   const [scrolled, setScrolled] = useState(false);
+
+  // 하이드레이션 에러 방지 - 비동기로 처리
+  useEffect(() => {
+    const timer = setTimeout(() => setMounted(true), 0);
+    return () => clearTimeout(timer);
+  }, []);
   
   useEffect(() => {
     const handleScroll = () => {

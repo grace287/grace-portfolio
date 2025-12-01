@@ -4,46 +4,63 @@ interface ProjectCardProps {
   title: string;
   description: string;
   skills: string[];
-  image: string;
   link: string;
 }
 
-export const ProjectCard = ({ title, description, skills, image, link }: ProjectCardProps) => {
+export const ProjectCard = ({ title, description, skills, link }: ProjectCardProps) => {
   return (
-    <div className="group relative bg-white/70 backdrop-blur-sm rounded-3xl overflow-hidden shadow-grace hover:shadow-grace-lg transition-all duration-500 hover:-translate-y-2 border border-grace-rose/20">
-      <div className="grid md:grid-cols-2 gap-8 p-8">
+    <div className="group relative bg-white/80 backdrop-blur-sm rounded-3xl overflow-hidden shadow-grace hover:shadow-grace-lg transition-all duration-500 hover:-translate-y-2 border border-grace-rose/20">
+      <div className="grid md:grid-cols-5 gap-8 p-8">
         
         {/* Content */}
-        <div className="flex flex-col justify-center space-y-6">
+        <div className="md:col-span-3 flex flex-col justify-center space-y-6">
           <div>
-            <div className="w-12 h-0.5 bg-gradient-to-r from-grace-gold to-grace-wine mb-4"></div>
-            <h3 className="text-3xl font-pretendard font-bold text-grace-text mb-4">{title}</h3>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-3 h-3 bg-grace-wine rounded-full"></div>
+              <div className="h-[1px] flex-1 bg-[linear-gradient(90deg,_#7C3A53_0%,_#D5C27F_50%,_transparent_100%)]"></div>
+            </div>
+            <h3 className="text-2xl md:text-3xl font-pretendard font-bold text-grace-text mb-4 group-hover:text-grace-wine transition-colors duration-300">{title}</h3>
             <p className="text-lg text-grace-secondary leading-relaxed font-inter">{description}</p>
           </div>
           
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2">
             {skills.map((skill, index) => (
-              <span key={index} className="px-4 py-2 bg-gradient-to-r from-grace-rose/30 to-grace-lavender/30 text-grace-wine rounded-full text-sm font-pretendard font-medium border border-grace-wine/10">
+              <span key={index} className="px-3 py-1.5 bg-[linear-gradient(135deg,_#F7D7E0_0%,_#D8C8FF_100%)] text-grace-wine rounded-full text-sm font-inter font-medium border border-grace-wine/10 hover:border-grace-wine/30 transition-colors duration-200">
                 {skill}
               </span>
             ))}
           </div>
           
-          <Link href={link} className="inline-flex items-center px-8 py-4 bg-grace-wine text-white rounded-xl hover:bg-grace-wine/90 transition-all duration-300 group-hover:shadow-lg font-pretendard font-semibold">
+          <Link href={link} className="group/btn inline-flex items-center px-6 py-3 bg-grace-wine text-white rounded-xl hover:bg-grace-wine/90 transition-all duration-300 font-pretendard font-semibold shadow-grace hover:shadow-grace-lg self-start">
             자세히 보기
-            <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            <svg className="w-4 h-4 ml-2 transform group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </Link>
         </div>
         
-        {/* Image */}
-        <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10" />
-          <div className="flex items-center justify-center h-full text-gray-500">
-            <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
+        {/* Visual Element */}
+        <div className="md:col-span-2 relative">
+          <div className="relative h-48 md:h-80 rounded-2xl overflow-hidden">
+            {/* Animated Background */}
+            <div className="absolute inset-0 bg-[linear-gradient(45deg,_#F7D7E0_0%,_#D8C8FF_50%,_#F7F4DD_100%)] opacity-20" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,_rgba(124,58,83,0.1)_0%,_transparent_50%)]" />
+            
+            {/* Floating Elements */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="relative">
+                <div className="w-32 h-32 border-4 border-grace-wine/20 rounded-full animate-pulse" />
+                <div className="absolute top-4 left-4 w-24 h-24 bg-grace-wine/10 rounded-full animate-bounce" style={{ animationDelay: '0.5s', animationDuration: '3s' }} />
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-white/80 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-grace">
+                  <span className="text-2xl">💼</span>
+                </div>
+              </div>
+            </div>
+            
+            {/* Coming Soon Badge */}
+            <div className="absolute top-4 right-4 px-3 py-1 bg-grace-wine/90 text-white text-xs font-inter font-medium rounded-full">
+              스크린샷 추가 예정
+            </div>
           </div>
         </div>
         

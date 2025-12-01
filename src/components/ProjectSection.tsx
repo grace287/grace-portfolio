@@ -11,24 +11,21 @@ export const ProjectSection = () => (
         title="WineNow 2.0"
         description="AI MBTI · Tasting Note · Canvas Export · Social Sharing"
         skills={["Next.js", "Django/FastAPI", "PostgreSQL", "S3", "AI"]}
-        image="/grace-portfolio/images/winenow.png"
-        link="/grace-portfolio/projects/winenow"
+        link="/projects/winenow"
       />
 
       <ProjectCard
         title="Maple"
         description="Flutter Mobile App · Schedule API · Widgets · Push Notifications"
         skills={["Flutter", "Supabase", "Firebase", "Clean Architecture"]}
-        image="/grace-portfolio/images/maple.png"
-        link="/grace-portfolio/projects/maple"
+        link="/projects/maple"
       />
 
       <ProjectCard
         title="GraceVoca"
         description="Multi-language Vocabulary · SRS · TTS · AI Recommendations"
         skills={["Flutter", "FastAPI", "Supabase", "AI", "Firebase"]}
-        image="/grace-portfolio/images/gracevoca.png"
-        link="/grace-portfolio/projects/gracevoca"
+        link="/projects/gracevoca"
       />
 
     </div>

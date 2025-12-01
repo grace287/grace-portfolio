@@ -8,8 +8,6 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-// Pretendard는 CDN으로 로드
-
 export const metadata: Metadata = {
   title: "Grace Lucia | Full-stack Developer Portfolio",
   description: "Grace Lucia의 포트폴리오. Next.js, Flutter, AI 기술을 활용한 웹과 모바일 애플리케이션 개발자입니다.",
@@ -34,20 +32,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" className={inter.variable}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link 
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" 
-          rel="stylesheet" 
-        />
         <link 
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" 
           rel="stylesheet" 
         />
       </head>
-      <body className={`${inter.variable} font-inter antialiased bg-white text-grace-text`}>
+      <body className="font-inter antialiased bg-white text-grace-text scroll-smooth">
         <Header />
         <main>
           {children}

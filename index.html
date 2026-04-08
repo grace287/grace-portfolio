@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grace Lucia | Full-stack Developer Portfolio</title>
+  <meta name="description" content="Grace Lucia의 포트폴리오. Next.js, Flutter, AI 기술을 활용한 웹과 모바일 애플리케이션 개발자입니다." />
+  <meta name="keywords" content="Grace Lucia, Full-stack Developer, Next.js, Flutter, Portfolio, Web Developer, Mobile App Developer" />
+  <style>
+    :root {
+      --bg: #fff;
+      --text: #1f1f23;
+      --muted: #6b7280;
+      --primary: #7c3a53;
+      --primary-soft: #f7d7e0;
+      --accent: #d5c27f;
+      --surface: #f8f5f2;
+      --card: #ffffff;
+      --border: rgba(124, 58, 83, 0.15);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); line-height: 1.6; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .page { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 80px 0; }
+    .section-sm { padding: 40px 0; }
+    .text-center { text-align: center; }
+    .grid { display: grid; gap: 24px; }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .border { border: 1px solid var(--border); }
+    .rounded { border-radius: 20px; }
+    .rounded-full { border-radius: 9999px; }
+    .btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 16px 24px; background: var(--primary); color: white; border: none; border-radius: 18px; cursor: pointer; transition: transform .2s ease, background .2s ease; }
+    .btn-primary:hover { transform: translateY(-2px); background: #6e2f47; }
+    .btn-outline { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 16px 24px; border: 2px solid var(--primary); color: var(--primary); border-radius: 18px; background: transparent; cursor: pointer; transition: transform .2s ease, background .2s ease, color .2s ease; }
+    .btn-outline:hover { background: var(--primary); color: white; transform: translateY(-2px); }
+    .hero { min-height: 100vh; padding-top: 90px; position: relative; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(247,215,224,.3), transparent 40%), linear-gradient(to top, rgba(255,255,255,.85), transparent 60%); }
+    .hero-content { position: relative; display: grid; grid-template-columns: 1.6fr 1fr; gap: 40px; align-items: center; }
+    .hero-title { font-size: clamp(2rem, 5vw, 5rem); margin: 0; line-height: 1.05; }
+    .hero-subtitle { font-size: 1.125rem; max-width: 680px; color: var(--muted); }
+    .label-pill { display: inline-flex; padding: 10px 18px; background: rgba(124,58,83,.08); border: 1px solid rgba(124,58,83,.1); border-radius: 999px; color: var(--primary); font-size: 0.95rem; font-weight: 600; }
+    .hero-meta { display: flex; align-items: center; gap: 12px; margin-top: 24px; justify-content: flex-start; }
+    .hero-meta-divider { width: 48px; height: 2px; background: linear-gradient(90deg, var(--primary), var(--accent)); }
+    .hero-card { position: relative; width: 100%; max-width: 420px; aspect-ratio: 1 / 1; margin: 0 auto; }
+    .hero-blob { position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from 0deg, #f7d7e0 0deg, #d8c8ff 120deg, #f7f4dd 240deg, #f7d7e0 360deg); filter: blur(36px); opacity: .6; animation: pulse 6s infinite alternate; }
+    .hero-cards { position: absolute; inset: 0; pointer-events: none; }
+    .hero-card-item { position: absolute; background: rgba(255,255,255,.95); border-radius: 28px; box-shadow: 0 30px 70px rgba(124,58,83,.08); border: 1px solid rgba(124,58,83,.12); text-align: center; padding: 18px; width: 110px; height: 110px; display: grid; place-items: center; gap: 8px; }
+    .hero-card-item:hover { transform: scale(1.08); }
+    .hero-card-logo { position: absolute; inset: 20%; border-radius: 50%; background: linear-gradient(135deg, #f7d7e0 0%, #d8c8ff 50%, #f7f4dd 100%); display: grid; place-items: center; font-size: 2rem; color: var(--primary); font-weight: 800; box-shadow: 0 24px 60px rgba(124,58,83,.16); }
+    .hero-card-tag { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+    .projects, .about, .stats, .contact, .skills, .footer { position: relative; }
+    .section-title { font-size: clamp(2rem, 3vw, 3rem); margin: 0 0 16px; }
+    .section-subtitle { color: var(--muted); font-size: 1rem; max-width: 680px; margin: 0 auto; }
+    .project-grid { display: grid; gap: 24px; }
+    .project-list { display: grid; gap: 20px; }
+    .project-card, .side-card, .info-card { background: rgba(255,255,255,.88); border: 1px solid rgba(124,58,83,.08); border-radius: 28px; padding: 24px; box-shadow: 0 18px 45px rgba(124,58,83,.08); }
+    .project-card h3, .side-card h4, .info-card h4 { margin: 0 0 12px; }
+    .project-card h3 { font-size: 1.7rem; }
+    .project-card p, .side-card p, .info-card p { margin: 0 0 16px; color: var(--muted); }
+    .tag-list, .skill-pill-group, .tech-list { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; list-style: none; }
+    .tag-pill, .tech-pill { background: rgba(220, 213, 224, .6); color: #5f3b52; border-radius: 999px; padding: 8px 12px; font-size: 0.88rem; }
+    .side-card { display: grid; gap: 16px; }
+    .side-card-title { display: flex; align-items: center; gap: 12px; font-size: 1.2rem; margin: 0; }
+    .badge { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 16px; background: rgba(248, 229, 234,.8); font-size: 1.1rem; }
+    .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .stats-card { background: #f5f2f0; border-radius: 28px; padding: 32px; text-align: center; transition: transform .2s ease; }
+    .stats-card:hover { transform: translateY(-6px); }
+    .stats-icon { font-size: 2.5rem; margin-bottom: 18px; }
+    .stats-number { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+    .about-grid { display: grid; gap: 40px; grid-template-columns: 1fr 1fr; align-items: center; }
+    .profile-card { border-radius: 32px; background: linear-gradient(135deg, #fde8ef 0%, #e9ddff 48%, #f8f2d4 100%); min-height: 360px; display: grid; place-items: center; position: relative; overflow: hidden; }
+    .profile-card::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at top left, rgba(255,255,255,.65), transparent 35%); }
+    .about-list { list-style: none; padding: 0; margin: 0; color: var(--muted); }
+    .about-list li { margin-bottom: 10px; }
+    .pill-group { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+    .pill { background: rgba(233, 245, 255, .8); color: #1d4ed8; padding: 10px 16px; border-radius: 999px; font-size: 0.95rem; }
+    .contact-grid { display: grid; gap: 32px; grid-template-columns: 1fr 1fr; }
+    .contact-card { display: grid; gap: 20px; }
+    .contact-info { display: grid; gap: 18px; }
+    .contact-item { display: flex; gap: 14px; align-items: flex-start; }
+    .contact-icon { min-width: 48px; min-height: 48px; display: grid; place-items: center; border-radius: 16px; background: #eff6ff; color: #1d4ed8; }
+    .contact-item h4 { margin: 0 0 6px; font-size: 1rem; }
+    .contact-item p { margin: 0; color: var(--muted); }
+    .contact-form { background: rgba(255,255,255,.95); border: 1px solid rgba(124,58,83,.1); border-radius: 28px; padding: 28px; }
+    .form-group { display: grid; gap: 8px; }
+    .form-group label { font-weight: 600; color: #111827; }
+    .form-group input, .form-group textarea { width: 100%; padding: 14px 16px; border: 1px solid rgba(107,114,128,.2); border-radius: 16px; font-size: 1rem; }
+    .form-group textarea { resize: vertical; min-height: 140px; }
+    .form-submit { width: 100%; padding: 16px 22px; border: none; border-radius: 16px; background: #111827; color: white; font-weight: 700; cursor: pointer; transition: background .2s ease; }
+    .form-submit:hover { background: #374151; }
+    .footer { background: linear-gradient(135deg, rgba(247,215,224,.2), rgba(216,200,255,.2)); border-top: 1px solid rgba(124,58,83,.1); }
+    .footer-grid { display: grid; gap: 32px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .footer h4 { margin: 0 0 16px; font-size: 1.1rem; }
+    .footer p, .footer a { color: var(--muted); }
+    .social-links { display: flex; gap: 14px; }
+    .social-link { display: inline-flex; width: 44px; height: 44px; align-items: center; justify-content: center; border-radius: 14px; background: white; box-shadow: 0 14px 30px rgba(124,58,83,.08); color: var(--text); }
+    .footer-note { padding-top: 28px; border-top: 1px solid rgba(124,58,83,.1); color: var(--muted); font-size: 0.95rem; }
+    .nav { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(18px); background: rgba(255,255,255,.92); border-bottom: 1px solid rgba(124,58,83,.1); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 18px 0; }
+    .nav-brand { display: flex; align-items: center; gap: 14px; }
+    .nav-brand-icon { width: 48px; height: 48px; background: linear-gradient(135deg, #f7d7e0, #d8c8ff); border-radius: 16px; display: grid; place-items: center; color: var(--primary); font-weight: 800; font-size: 1.15rem; }
+    .nav-links { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+    .nav-links a { color: var(--muted); font-size: 0.96rem; font-weight: 600; transition: color .2s ease; }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-actions { display: flex; gap: 16px; align-items: center; }
+    .meta-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: center; margin-top: 24px; }
+    @media (max-width: 900px) { .hero-content { grid-template-columns: 1fr; } .section { padding: 60px 0; } .grid-2, .footer-grid, .about-grid, .contact-grid, .stats-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 620px) { .hero { padding-top: 70px; } .hero-meta { flex-direction: column; align-items: center; } .hero-title { font-size: 2.8rem; } .nav-inner { flex-direction: column; align-items: flex-start; } .nav-links { gap: 12px; } }
+    @keyframes pulse { 0% { transform: scale(1); } 100% { transform: scale(1.08); } }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="page nav-inner">
+      <a href="#top" class="nav-brand">
+        <span class="nav-brand-icon">G</span>
+        <div>
+          <div style="font-weight:800; color:#111827;">Grace</div>
+          <div style="font-size:0.85rem; color:var(--muted); letter-spacing:.12em;">DEVELOPER</div>
+        </div>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="/resume.pdf" class="btn-primary">Resume</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="page">
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <div>
+          <div class="label-pill">👋 안녕하세요!</div>
+          <h1 class="hero-title">I'm Grace,<br><span style="background: linear-gradient(135deg, #7C3A53 0%, #D5C27F 50%, #7C3A53 100%); -webkit-background-clip: text; color: transparent;">Full-stack Developer</span></h1>
+          <div class="meta-row">
+            <div class="hero-meta-divider"></div>
+            <div style="color: var(--muted); font-size: .95rem; letter-spacing:.18em; font-weight:600;">PORTFOLIO 2025</div>
+            <div class="hero-meta-divider" style="background: linear-gradient(90deg, #D5C27F 0%, #7C3A53 100%);"></div>
+          </div>
+          <p class="hero-subtitle">웹과 모바일을 넘나드는 개발자입니다.<br>AI 기술과 디자인 사고로 <strong style="color: var(--primary);">더 나은 사용자 경험</strong>을 만들어갑니다.</p>
+          <div style="display:flex; flex-wrap:wrap; gap:16px; margin-top:40px; align-items:center;">
+            <a href="#projects" class="btn-primary">프로젝트 보기</a>
+            <a href="#contact" class="btn-outline">연락하기</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-blob"></div>
+          <div class="hero-cards">
+            <div class="hero-card-item" style="top: 10%; left: 6%; width: 108px; height: 108px;">
+              <div>⚛️</div>
+              <div class="hero-card-tag">React</div>
+            </div>
+            <div class="hero-card-item" style="top: 6%; right: 5%; width: 90px; height: 90px;">
+              <div style="font-size:1.4rem;">📱</div>
+              <div class="hero-card-tag">Mobile</div>
+            </div>
+            <div class="hero-card-item" style="bottom: 10%; left: 6%; width: 92px; height: 92px;">
+              <div style="font-size:1.4rem;">🤖</div>
+              <div class="hero-card-tag">AI</div>
+            </div>
+            <div class="hero-card-item" style="bottom: 8%; right: 4%; width: 92px; height: 92px;">
+              <div style="font-size:1.4rem;">🎨</div>
+              <div class="hero-card-tag">Design</div>
+            </div>
+            <div class="hero-card-logo">G</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="skills section" aria-labelledby="skills-title">
+      <div class="text-center">
+        <h2 id="skills-title" class="section-title">Skills</h2>
+        <p class="section-subtitle">주요 기술 스택을 경험과 함께 소개합니다.</p>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:32px;">
+        <span class="tech-pill">⚛️ React</span>
+        <span class="tech-pill">⚡ Next.js</span>
+        <span class="tech-pill">🏷️ TypeScript</span>
+        <span class="tech-pill">🦋 Flutter</span>
+        <span class="tech-pill">🐍 Django</span>
+        <span class="tech-pill">🚀 FastAPI</span>
+        <span class="tech-pill">🐘 PostgreSQL</span>
+        <span class="tech-pill">⚡ Supabase</span>
+        <span class="tech-pill">🔥 Firebase</span>
+        <span class="tech-pill">☁️ AWS</span>
+        <span class="tech-pill">🐳 Docker</span>
+        <span class="tech-pill">📝 Git</span>
+        <span class="tech-pill">🎨 Tailwind CSS</span>
+        <span class="tech-pill">🐍 Python</span>
+        <span class="tech-pill">🟨 JavaScript</span>
+        <span class="tech-pill">💻 Node.js</span>
+        <span class="tech-pill">🍃 MongoDB</span>
+        <span class="tech-pill">🤖 AI/ML</span>
+        <span class="tech-pill">🎨 Figma</span>
+        <span class="tech-pill">▲ Vercel</span>
+      </div>
+    </section>
+
+    <section id="projects" class="projects section">
+      <div class="text-center">
+        <h2 class="section-title">Featured Projects</h2>
+      </div>
+      <div class="project-list">
+        <article class="project-card">
+          <h3>WineNow 2.0</h3>
+          <p>AI MBTI · Tasting Note · Canvas Export · Social Sharing</p>
+          <div class="tag-list">
+            <span class="tag-pill">Next.js</span>
+            <span class="tag-pill">Django</span>
+            <span class="tag-pill">FastAPI</span>
+            <span class="tag-pill">PostgreSQL</span>
+            <span class="tag-pill">AWS S3</span>
+            <span class="tag-pill">ChatGPT AI</span>
+          </div>
+        </article>
+        <article class="project-card">
+          <h3>Maple</h3>
+          <p>Flutter Mobile App · Schedule API · Widgets · Push Notifications</p>
+          <div class="tag-list">
+            <span class="tag-pill">Flutter</span>
+            <span class="tag-pill">Dart</span>
+            <span class="tag-pill">Supabase</span>
+            <span class="tag-pill">Firebase</span>
+            <span class="tag-pill">Clean Architecture</span>
+          </div>
+        </article>
+        <article class="project-card">
+          <h3>GraceVoca</h3>
+          <p>Multi-language Vocabulary · SRS · TTS · AI Recommendations</p>
+          <div class="tag-list">
+            <span class="tag-pill">Flutter</span>
+            <span class="tag-pill">FastAPI</span>
+            <span class="tag-pill">Python</span>
+            <span class="tag-pill">Supabase</span>
+            <span class="tag-pill">OpenAI</span>
+            <span class="tag-pill">Firebase</span>
+          </div>
+        </article>
+      </div>
+      <div style="margin-top:60px; padding-top:40px; border-top:1px solid rgba(124,58,83,.1);">
+        <h3 class="section-title" style="font-size:2rem; color: var(--primary);">Side Projects</h3>
+        <div class="project-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+          <div class="side-card">
+            <div class="side-card-title"><span class="badge">🎨</span>Grace Design System</div>
+            <p>개인 브랜드를 위한 디자인 시스템 및 컴포넌트 라이브러리</p>
+            <div class="pill-group">
+              <span class="pill">TypeScript</span>
+              <span class="pill">React</span>
+              <span class="pill">Tailwind CSS</span>
+            </div>
+          </div>
+          <div class="side-card">
+            <div class="side-card-title"><span class="badge">📝</span>Dev Blog Engine</div>
+            <p>개발자를 위한 마크다운 기반 블로그 시스템</p>
+            <div class="pill-group">
+              <span class="pill">Next.js</span>
+              <span class="pill">MDX</span>
+              <span class="pill">Vercel</span>
+            </div>
+          </div>
+          <div class="side-card">
+            <div class="side-card-title"><span class="badge">🤖</span>AI Chat Assistant</div>
+            <p>개인 업무 효율성을 위한 맞춤형 AI 채팅 도구</p>
+            <div class="pill-group">
+              <span class="pill">Python</span>
+              <span class="pill">FastAPI</span>
+              <span class="pill">OpenAI</span>
+            </div>
+          </div>
+          <div class="side-card">
+            <div class="side-card-title"><span class="badge">📱</span>Widget Collection</div>
+            <p>iOS/Android 위젯 모음집 및 개발 도구</p>
+            <div class="pill-group">
+              <span class="pill">Flutter</span>
+              <span class="pill">Dart</span>
+              <span class="pill">Widget Kit</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats section-sm">
+      <div class="text-center">
+        <h3 class="section-title" style="font-size:2.2rem;">Numbers That Matter</h3>
+        <p class="section-subtitle">성과로 말하는 개발자</p>
+      </div>
+      <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top:32px;">
+        <div class="stats-card"><div class="stats-icon">🚀</div><div class="stats-number">3+</div><div>Years Experience</div></div>
+        <div class="stats-card"><div class="stats-icon">💼</div><div class="stats-number">15+</div><div>Projects Completed</div></div>
+        <div class="stats-card"><div class="stats-icon">⚡</div><div class="stats-number">8+</div><div>Technologies Mastered</div></div>
+        <div class="stats-card"><div class="stats-icon">⭐</div><div class="stats-number">100%</div><div>Client Satisfaction</div></div>
+      </div>
+    </section>
+
+    <section id="about" class="about section" aria-labelledby="about-title">
+      <div class="text-center">
+        <div style="height:4px; width:80px; margin:0 auto 24px; background: linear-gradient(90deg, #7c3a53, #d5c27f);"></div>
+        <h2 id="about-title" class="section-title">About Me</h2>
+        <p class="section-subtitle">끊임없이 성장하는 개발자</p>
+      </div>
+      <div class="about-grid">
+        <div class="profile-card">
+          <div style="text-align:center; color:#7f7f85; font-size:0.95rem; line-height:1.8;">
+            프로필 이미지 자리
+          </div>
+        </div>
+        <div>
+          <div style="margin-bottom:24px;">
+            <h3 style="font-size:2rem; margin:0 0 16px;">Full-stack Developer</h3>
+            <p style="color: var(--muted); font-size:1.05rem; line-height:1.8; margin:0;">웹과 모바일 애플리케이션 개발에 열정을 가진 풀스택 개발자입니다. 사용자 경험을 중시하며, 혁신적인 기술을 통해 실용적인 솔루션을 만들어나가고 있습니다.</p>
+          </div>
+          <div style="display:grid; gap:20px; grid-template-columns: repeat(2, minmax(0, 1fr));">
+            <div>
+              <h4 style="margin:0 0 12px;">Frontend</h4>
+              <ul class="about-list">
+                <li>React / Next.js</li>
+                <li>Flutter</li>
+                <li>TypeScript</li>
+                <li>Tailwind CSS</li>
+              </ul>
+            </div>
+            <div>
+              <h4 style="margin:0 0 12px;">Backend</h4>
+              <ul class="about-list">
+                <li>Django / FastAPI</li>
+                <li>PostgreSQL</li>
+                <li>Supabase</li>
+                <li>AWS / Docker</li>
+              </ul>
+            </div>
+          </div>
+          <div class="pill-group">
+            <span class="pill">🎯 Problem Solver</span>
+            <span class="pill">🚀 Fast Learner</span>
+            <span class="pill">💡 Creative Thinker</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact section" aria-labelledby="contact-title">
+      <div class="text-center">
+        <h2 id="contact-title" class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">새로운 프로젝트나 협업 기회에 대해 이야기해보세요!</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div style="margin-bottom:24px;"><h3 style="margin:0; font-size:1.7rem;">연락처 정보</h3></div>
+          <div class="contact-info">
+            <div class="contact-item"><div class="contact-icon">✉️</div><div><h4>Email</h4><p>grace@example.com</p></div></div>
+            <div class="contact-item"><div class="contact-icon">🐙</div><div><h4>GitHub</h4><p>github.com/chenluc1a</p></div></div>
+            <div class="contact-item"><div class="contact-icon">🔗</div><div><h4>LinkedIn</h4><p>linkedin.com/in/grace287</p></div></div>
+          </div>
+        </div>
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('메시지가 전송되었습니다.');">
+          <div class="form-group"><label for="name">이름</label><input id="name" name="name" type="text" placeholder="Your Name" /></div>
+          <div class="form-group"><label for="email">이메일</label><input id="email" name="email" type="email" placeholder="your@email.com" /></div>
+          <div class="form-group"><label for="message">메시지</label><textarea id="message" name="message" placeholder="프로젝트나 협업에 대해 말씀해 주세요..."></textarea></div>
+          <button type="submit" class="form-submit">메시지 보내기</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="page footer-grid" style="padding: 48px 0;">
+      <div>
+        <h3 style="margin:0 0 16px; font-size:1.25rem;">Grace Lucia</h3>
+        <p style="margin:0; color: var(--muted);">Full-stack Developer passionate about creating innovative web and mobile solutions.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <div style="display:grid; gap:10px;">
+          <a href="#about">About Me</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+          <a href="/resume.pdf">Resume</a>
+        </div>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <div class="social-links">
+          <a href="https://github.com/chenluc1a" class="social-link" aria-label="GitHub">🐙</a>
+          <a href="mailto:grace@example.com" class="social-link" aria-label="Email">✉️</a>
+          <a href="https://linkedin.com/in/grace287" class="social-link" aria-label="LinkedIn">🔗</a>
+        </div>
+      </div>
+    </div>
+    <div class="page footer-note">© 2025 Grace Lucia. All rights reserved.</div>
+  </footer>
+</body>
+</html>
